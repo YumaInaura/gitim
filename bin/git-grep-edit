@@ -13,7 +13,7 @@ if [ -z "$git_grep_result" ]; then
   exit
 fi
 
-readonly git_grep_select=$(git grep $@ | peco)
+readonly git_grep_select=$(git grep $@ | peco --query="$1")
 
 if [ -z "$git_grep_select" ]; then
   exit
