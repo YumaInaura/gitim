@@ -1,0 +1,27 @@
+#!/usr/bin/env bash -eu
+
+readonly editor=${EDITOR:-vim}
+
+readonly git_grep_result=$(git grep $@)
+
+if [ ! $(which peco) ]; then
+  echo You need peco
+fi
+
+if [ -z "$git_grep_result" ]; then
+  echo No match with git grep
+  exit
+fi
+
+readonly git_grep_select=$(git grep $@ | peco)
+
+if [ -z "$git_grep_select" ]; then
+  exit
+fi
+
+readonly filepath=$(echo "$git_grep_select" | awk -F':' '{ print $1 }')
+
+if [ ! -z "$filepath" ]; then
+  eval "$editor" "$filepath"
+fi
+
