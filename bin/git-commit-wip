@@ -1,0 +1,4 @@
+#!/usr/bin/env bash -eu
+
+git commit --allow-empty -m "WIP"
+
