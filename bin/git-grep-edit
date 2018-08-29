@@ -1,11 +1,16 @@
 #!/usr/bin/env bash -eu
 
+# Usage
+#
+# $ command [grep-keyword] --some-grep-option
+
 readonly editor=${EDITOR:-vim}
 
 readonly git_grep_result=$(git grep $@)
 
 if [ ! $(which peco) ]; then
-  echo You need peco
+  echo You need peco please install
+  exit
 fi
 
 if [ -z "$git_grep_result" ]; then
@@ -13,15 +18,20 @@ if [ -z "$git_grep_result" ]; then
   exit
 fi
 
-readonly git_grep_select=$(git grep $@ | peco)
+readonly git_grep_select=$(git grep --line-number $@ | peco --query="$1")
 
 if [ -z "$git_grep_select" ]; then
   exit
 fi
 
 readonly filepath=$(echo "$git_grep_select" | awk -F':' '{ print $1 }')
+readonly line_number=$(echo "$git_grep_select" | awk -F':' '{ print $2 }')
 
 if [ ! -z "$filepath" ]; then
-  eval "$editor" "$filepath"
+  if [[ "$editor" =~ vim ]] && [ ! -z "$line_number" ]; then
+    eval "$editor" +"$line_number" "$filepath"
+  else
+    eval "$editor" "$filepath"
+  fi
 fi
 
