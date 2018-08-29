@@ -6,5 +6,5 @@ fi
 
 readonly basedir=$(dirname "$0")
 
-open $("${basedir}/github-url") $@
+open $("${basedir}/git-url") $@
 
