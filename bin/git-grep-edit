@@ -1,6 +1,9 @@
 #!/usr/bin/env bash -eu
 
 # Usage
+# 
+# git grep and edit with $EDITOR
+# When you use Vim then open related line number in file
 #
 # $ command [grep-keyword] --some-grep-option
 
