@@ -1,0 +1,4 @@
+#!/usr/bin/env bash -eu
+
+git branch --contains=HEAD | sed 's/\*//g' | sed 's/ //g'
+
