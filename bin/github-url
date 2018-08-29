@@ -1,0 +1,4 @@
+#!/usr/bin/env bash -eu
+
+git remote --verbose | head -n 1 | awk '{ print $2 }' | sed -e 's/\\.git$//g'
+

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash -eu
+
+if [ ! $(which open) ]; then
+  echo need open command && exit 1
+fi
+
+readonly basedir=$(dirname "$0")
+
+open $("${basedir}/github-url") $@
+
