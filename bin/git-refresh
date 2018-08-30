@@ -1,0 +1,5 @@
+#!/usr/bin/env bash -eu
+
+git fetch
+git reset --hard origin/$(git current-branch)
+
