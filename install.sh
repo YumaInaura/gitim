@@ -1,6 +1,7 @@
 #!/usr/bin/env bash -eu
 
 readonly basedir=$(dirname "$0")
+readonly tool_name=gitim
 
 mkdir -p "$HOME/.gitim"
 
@@ -12,6 +13,8 @@ echo ==============================================
 echo Installed to "$bin_path"
 echo -=============================================
 ls -la "$bin_path"
+
+readonly export_line='PATH="$HOME/.gitim:$PATH" # '"$tool_name"  
 
 cat <<'EOM'
 ==============================================
